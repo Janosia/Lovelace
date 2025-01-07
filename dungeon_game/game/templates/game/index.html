@@ -20,25 +20,21 @@
             <input type="number" id="dungeon-cols" min="1" value="10">
             <button id="generate-dungeon-btn">Generate Dungeon</button>
         </div>
-        
-        
-        
         <div >
             <div >
                 <div id="dungeon-grid" class="cell-grid"></div>
-                <div >
+                <div>
+                    <label for="guess">Minimum Health Required</label>
+                    <input type="number" id="user-guess"> 
+                    <button id="accept">Show Result</button>               
+                </div>
+                <div>
                     <p>Minimum Health Required: <span id="minhealth" class="font-bold"></span></p>
                 </div>
                 <button id="new-game-btn" >
                     New Dungeon
                 </button>
             </div>
-
-            <!-- Legend -->
-            <!-- <div>
-                <h2 >Dungeon Legend</h2>
-                <div id="cell-legend" >
-                 Legend will be populated dynamically -->
                 </div>
             </div> 
         </div>

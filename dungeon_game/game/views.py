@@ -3,7 +3,6 @@ import json
 from django.shortcuts import render
 from django.http import JsonResponse
 
-# Define cell types with their characteristics
 CELL_TYPES = [
     {
         "type": "trap",
@@ -42,7 +41,6 @@ def generate_dungeon(request):
     rows = int(request.GET.get('rows') or 5)
     cols = int(request.GET.get('cols') or 5)
     print(rows)
-    # Create dungeon with cell types and damage values
     dungeon = []
     dungeon_details = []
     
@@ -50,19 +48,14 @@ def generate_dungeon(request):
         row = []
         row_details = []
         for _ in range(cols):
-            # Randomly select cell type
             cell_type = random.choice(CELL_TYPES)
-            
-            # Generate damage value within cell type's range
             damage = random.randint(cell_type['damage'][0], cell_type['damage'][1])
-            
             row.append(damage)
             row_details.append({
                 "type": cell_type['type'],
                 "damage": damage,
                 "image": cell_type['image']
             })
-        
         dungeon.append(row)
         dungeon_details.append(row_details)
     
@@ -78,18 +71,14 @@ def game_view(request):
     cell_types = CELL_TYPES
     return render(request, 'game/index.html', {'cell_types': cell_types})
 
-# def game_view(request):
-#     """Render the main game page"""
-#     return render(request, 'game/index.html')
-
 def calculate_minimum_health(request):
     """
     Calculate minimum health
     """
     if request.method == 'POST':
         data = json.loads(request.body)
-        dungeon = data.get('dungeon')  # Access dungeon data from the request
-        # print(dungeon)  # Debugging: output dungeon details
+        dungeon = data.get('dungeon')
+        guess = data.get('guess_user') 
         def max_func(a, b):
             return a if a > b else b
         
@@ -97,22 +86,16 @@ def calculate_minimum_health(request):
             r, c = len(dungeon), len(dungeon[0])
             I = 237627
             
-            # Initialize DP array
             dp = [[I for _ in range(c)] for _ in range(r)]
-            
-            # Base case for bottom-right cell
             if dungeon[r-1][c-1] >0 :
                 dp[r-1][c-1] =0
             else:
                 dp[r-1][c-1]=dungeon[r-1][c-1]
-            # dp[r-1][c-1] = 0 if dungeon[r-1][c-1] > 0 else dungeon[r-1][c-1]
             
-            # Fill last row
             for i in range(c-2, -1, -1):
                 dp[r-1][i] = dungeon[r-1][i] + dp[r-1][i+1]
                 dp[r-1][i] = 0 if dp[r-1][i] > 0 else dp[r-1][i]
             
-            # Fill last column
             for j in range(r-2, -1, -1):
                 dp[j][c-1] = dungeon[j][c-1] + dp[j+1][c-1]
                 dp[j][c-1] = 0 if dp[j][c-1] > 0 else dp[j][c-1]
@@ -140,8 +123,7 @@ def calculate_minimum_health(request):
             
             return h
         
-        min_health = calculate_min_hp(dungeon)
-        
+        min_health = calculate_min_hp(dungeon) 
         return JsonResponse({
             'minimum_health': min_health
             })
