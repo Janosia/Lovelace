@@ -1,6 +1,11 @@
 # Lovelace
 
 ### Running Dungeon Game
-``` cd dungeon_game
+1. Go to directory
+```  
+cd dungeon_game
+```
+2. Start server
+```
     python manage.py runserver
 ```
