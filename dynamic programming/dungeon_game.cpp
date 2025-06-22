@@ -13,6 +13,7 @@ int recurse(vector<vector<int>> &dungeon, vector<vector<int>> &dp, int r, int c)
     
 int calculateMinimumHP(vector<vector<int>>& dungeon) {
         int r = dungeon.size(), c = dungeon[0].size();
+        
         vector <vector<int>> dp;
         
         for(int i =0; i<r; i++){
@@ -21,8 +22,8 @@ int calculateMinimumHP(vector<vector<int>>& dungeon) {
             dp.push_back(temp);
         }
         
-        if(dungeon[r-1][c-1]>0){dp[r-1][c-1]=0;}
-        else {dp[r-1][c-1] = dungeon[r-1][c-1];}
+        if(dungeon[r-1][c-1]>0) dp[r-1][c-1]=0;
+        else dp[r-1][c-1] = dungeon[r-1][c-1];
         
         for(int i=c-2; i>=0; i--){
             dp[r-1][i] = dungeon[r-1][i] + dp[r-1][i+1];
