@@ -37,7 +37,7 @@ class DSU{
         }
 };
 
-int main(vector<vector<int>>edges){
+vector<int> main(vector<vector<int>>edges){
     DSU dsu(n);
     for(auto edge : edges){
         if(!dsu.union(edge[0], edge[1])) return edge;
