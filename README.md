@@ -1,3 +1,3 @@
 # 🦀 Lovelace 🦀
 
-Reducing acceptance rate of problem
+Reducing acceptance rate of problems
