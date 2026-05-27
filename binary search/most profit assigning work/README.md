@@ -1,0 +1,1 @@
+## [link](https://leetcode.com/problems/most-profit-assigning-work/description/?envType=problem-list-v2&envId=binary-search)

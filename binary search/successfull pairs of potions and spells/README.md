@@ -1,0 +1,1 @@
+## [link] (https://leetcode.com/problems/successful-pairs-of-spells-and-potions/description/?envType=problem-list-v2&envId=binary-search)

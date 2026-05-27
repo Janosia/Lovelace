@@ -20,5 +20,5 @@ int bin_search(vector<int>&dist, double hours){
         if(func(dist, mid) > hours) low = mid+1;
         else high = mid-1;
     }
-    return low;
+    return low <= 1e7 ? low : -1;
 }
